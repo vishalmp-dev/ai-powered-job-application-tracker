@@ -69,7 +69,7 @@ function AddApplication({ onSuccess, dark }: AddApplicationProps) {
     try {
      // STEP 1: Parse JD
 const parseRes = await axios.post<ParsedForm>(
-  "http://localhost:5000/api/ai/parse",
+ `${import.meta.env.VITE_API_URL}/api/ai/parse`,
   { jd },
   { headers: { Authorization: `Bearer ${token}` } }
 );
@@ -82,7 +82,7 @@ let resumeData: ResumeResponse | null = null;
 
 try {
   const resumeRes = await axios.post<ResumeResponse>(
-    "http://localhost:5000/api/ai/resume",
+    "`${import.meta.env.VITE_API_URL}/api/ai/resume`",
     { jd },
     { headers: { Authorization: `Bearer ${token}` } }
   );
@@ -92,7 +92,7 @@ try {
 
   try {
     const retryRes = await axios.post<ResumeResponse>(
-      "http://localhost:5000/api/ai/resume",
+      "`${import.meta.env.VITE_API_URL}/api/ai/resume`",
       { jd },
       { headers: { Authorization: `Bearer ${token}` } }
     );
